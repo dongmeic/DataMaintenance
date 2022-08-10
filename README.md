@@ -5,3 +5,6 @@ To collect data for data visualization, transportation modeling, and web mapping
 2. Land use data;
 3. Employments data: employment, wage/income;
 4. Demographic data: population, gender, race, etc.
+
+## Low income households data for Statewide Transportation Improvement Fund (STIF)
+
