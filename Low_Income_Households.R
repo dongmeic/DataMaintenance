@@ -76,13 +76,6 @@ dt <- merge(dt, hhs[,c("GEO_ID", "TotalHHLDs")], by="GEO_ID")
 colnames(dt)[1] <- "BlockGro_1"
 st_write(dt, file.path(inpath, "BlockGroups_Embed.shp"), delete_layer = TRUE)
 
-# o - old
-o_pctlow <- (odt$TotalHHLDs*(odt$PopLessTha/odt$Population))/odt$TotalHHLDs
-quantile(o_pctlow, c(.1, .2, .3, .4, .5, .6, .7), na.rm = T)
-
-pctlow <- (dt$TotalHHLDs*(dt$PopLessTha/dt$Population))/dt$TotalHHLDs
-quantile(pctlow, c(.1, .2, .3, .4, .5, .6, .7), na.rm = T)
-
 # state (or) level
 or_pov <- readtable(tableID = "C17002", 
                     year = YEAR,
@@ -96,11 +89,12 @@ or_hhs <- readtable(year = YEAR,
 a <- or_pov[or_pov$Variable=="C17002_001E", "Value"]
 b <- or_pov[or_pov$Variable=="C17002_008E", "Value"]
 c <- or_hhs[or_hhs$Variable=="B11016_001E", "Value"]
-# state average level
+# state average level (used for the state average reference line)
 (c*(a-b)/a)/c
 
 # totally 270 features (with one zero-hh bg)
 t <- 270
+# this will show the top percents for the block group parameter
 top_pct <- sort(pctlow)[c(t-27, t-27*2, t-27*3, t-27*4, t-27*5, t-27*6, t-27*7)]
 
 df <- data.frame(bg=dt$BlockGro_1, pct=pctlow)
