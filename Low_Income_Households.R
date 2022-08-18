@@ -1,4 +1,4 @@
-# This script was created to organize low-income households and employment by wage classes data
+# This script was created to organize low-income households data
 # By Dongmei Chen (dchen@lcog.org)
 # On August 4th, 2022
 
@@ -95,6 +95,7 @@ c <- or_hhs[or_hhs$Variable=="B11016_001E", "Value"]
 # totally 270 features (with one zero-hh bg)
 t <- 270
 # this will show the top percents for the block group parameter
+para_val <- c(27, 27*2, 27*3, 27*4, 27*5, 27*6, 27*7)
 top_pct <- sort(pctlow)[c(t-27, t-27*2, t-27*3, t-27*4, t-27*5, t-27*6, t-27*7)]
 
 df <- data.frame(bg=dt$BlockGro_1, pct=pctlow)
